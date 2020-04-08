@@ -57,8 +57,6 @@ def downloadasmp3():
     stream = yt.streams.get_by_itag('140')
     stream.download()
 
-
-
 downloadmp3 = tkinter.Button(root, text='Download as MP3.', command=downloadasmp3)
 downloadmp3.pack()
 
