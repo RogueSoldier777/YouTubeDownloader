@@ -1,5 +1,5 @@
 from pytube import YouTube
-import tkinter, sys
+import tkinter, sys, subprocess
 
 root = tkinter.Tk()
 
@@ -15,6 +15,7 @@ videoLinkEntry.pack()
 def confirm():
     global yt
     global videoLink
+    global videoTitle
     videoLink = videoLinkEntry.get()
 
     yt = YouTube(videoLink)
@@ -45,8 +46,21 @@ def download():
     stream = yt.streams.first()
     stream.download()
 
+    sys.exit(0)
+
 downloadButton = tkinter.Button(root, text='Download as MP4.', command=download)
 downloadButton.pack()
+
+def downloadasmp3():
+    yt = YouTube(videoLink)
+
+    stream = yt.streams.get_by_itag('140')
+    stream.download()
+
+
+
+downloadmp3 = tkinter.Button(root, text='Download as MP3.', command=downloadasmp3)
+downloadmp3.pack()
 
 if __name__ == "__main__":
     root.mainloop()
